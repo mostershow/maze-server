@@ -1,0 +1,27 @@
+server:
+  port: 8080
+  servlet:
+    #context-path: "/service-incubator"
+    context-path: "/"
+  accessIpRange: "10.1.0.0/16,10.0.0.0/16"
+#  ssl:
+#    enabled: true
+#    key-store: "classpath:icesimba-ops.jks"
+#    key-password: "b34cd499326824F0"
+#    key-store-type:
+
+
+wss:
+  port: 10035
+
+
+# mybatis 配置
+
+# 日志
+logging:
+  config: classpath:log4j2.xml
+
+ops-api:
+  is-in-test: true
+  authentication: false
+
