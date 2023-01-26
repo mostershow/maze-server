@@ -14,7 +14,6 @@ import io.netty.channel.SimpleChannelInboundHandler
 @ChannelHandler.Sharable
 class HeartBeatHandler : SimpleChannelInboundHandler<HeartBeatRequestMessage>() {
     override fun channelRead0(ctx: ChannelHandlerContext, msg: HeartBeatRequestMessage) {
-        logger.debug("收到心跳消息")
         ctx.writeAndFlush(Message(OperateType.HeartBeatRes.type, HeartBeatResponseMessage()))
     }
 

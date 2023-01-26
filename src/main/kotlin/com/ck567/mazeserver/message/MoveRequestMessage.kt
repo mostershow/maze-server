@@ -4,9 +4,11 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.protobuf.ProtoNumber
 
 @Serializable
-data class LoginRequestMessage(
+data class MoveRequestMessage(
+
     @ProtoNumber(1)
-    val groupId: String,
+    val userId: String,
     @ProtoNumber(2)
-    val userId: String
-)
+    val direction: Int
+) {
+}

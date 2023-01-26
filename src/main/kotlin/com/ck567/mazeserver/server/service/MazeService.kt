@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service
 @Service
 class MazeService {
 
-    var userMaze: HashMap<String, Walker> = HashMap()
+
 
     fun init(req: InitReq): Walker {
         var maze = Maze(req.width, req.height)
@@ -23,5 +23,16 @@ class MazeService {
         val walker = userMaze[req.userId]
         walker!!.move(req.direction)
         return walker
+    }
+
+    companion object{
+        var userMaze: HashMap<String, Walker> = HashMap()
+        fun move2(userId: String, direction:Int): Walker {
+            println(userId)
+            println("--"+ userMaze.size)
+            val walker = userMaze[userId]
+            walker!!.move(direction)
+            return walker
+        }
     }
 }

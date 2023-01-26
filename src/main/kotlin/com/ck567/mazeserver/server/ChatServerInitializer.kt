@@ -27,6 +27,7 @@ class ChatServerInitializer :  ChannelInitializer<Channel>() {
     val loginReqHandler = LoginRequestHandler()
     val heartBeat = HeartBeatHandler()
     val auth = ChannelAuthHandler()
+    val move = MoveHandler()
 
 
     override fun initChannel(channel: Channel) {
@@ -41,8 +42,10 @@ class ChatServerInitializer :  ChannelInitializer<Channel>() {
             .addLast(WebSocketServerProtocolHandler("/", null, true))
             .addLast(messageEncoder)
             .addLast(messageDecoder)
+            .addLast(move)
             .addLast(loginReqHandler)
             .addLast(heartBeat)
+
 
     }
 
