@@ -19,17 +19,18 @@ class Controller {
     ): ResponseEntity<Walker> {
         return ResponseEntity.ok(service.init(req))
     }
-    @RequestMapping("/move")
-    fun move(
-        @RequestBody req: MoveReq
-    ): ResponseEntity<Walker> {
-        return ResponseEntity.ok(service.move(req))
-    }
+//    @RequestMapping("/move")
+//    fun move(
+//        @RequestBody req: MoveReq
+//    ): ResponseEntity<Walker> {
+//        return ResponseEntity.ok(service.move(req))
+//    }
 }
 data class InitReq(
     val userId: String,
     var width: Int,
-    var height: Int
+    var height: Int,
+    var roomId: String
 )
 data class MoveReq(
     val userId: String,

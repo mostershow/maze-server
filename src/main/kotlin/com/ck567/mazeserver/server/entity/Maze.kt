@@ -4,6 +4,8 @@ import java.util.*
 import kotlin.math.floor
 
 data class Maze(
+    var userId: String,
+    var roomId: String,
     var width: Int,
     var height: Int,
     var grids: Array<Int>,
@@ -11,13 +13,14 @@ data class Maze(
     var walkHistory2: Stack<Int>
 ) {
 
-    constructor(width: Int, height: Int) : this(width, height, Array(width * height) { 0 }, Stack(), Stack())
+    constructor(width: Int, height: Int,userId: String,roomId: String) : this(userId, roomId, width, height, Array(width * height) { 0 }, Stack(), Stack())
 
     // 遍历整图
     fun walk(startPos: Int) {
         var currentPos = startPos
         while (this.getNext0() != -1) {
             // 当还有格子未到达过
+
             val (flag, current) = this.step(currentPos)
             currentPos = current
             if (!flag) break
@@ -139,10 +142,9 @@ data class Maze(
     }
 }
 
-fun main() {
-
-    val maze = Maze(5, 5)
-    println(maze.grids.size)
-    maze.walk(20)
-    println(maze.grids.contentToString())
-}
+//fun main() {
+//    val maze = Maze(5, 5,"","")
+//    println(maze.grids.size)
+//    maze.walk(20)
+//    println(maze.grids.contentToString())
+//}

@@ -1,7 +1,11 @@
 package com.ck567.mazeserver.server.service
 
 
+import com.ck567.mazeserver.message.Message
+import com.ck567.mazeserver.message.OperateType
+import com.ck567.mazeserver.server.entity.Walker
 import com.ck567.mazeserver.server.session.Session
+import com.ck567.mazeserver.server.session.SessionFactory
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
@@ -39,18 +43,9 @@ class LoginService {
 //        }
 //    }
 //
-//    companion object {
-//
-//        fun forceLogout(userLogin: UserLogin) {
-//            val channel = SessionFactory.getSession().getChannel(userLogin.userId)
-//            if (channel != null) {
-//                val logout = ForceLogoutMessage(userLogin.userId, userLogin.device)
-//                channel.writeAndFlush(Message(OperateType.ForceLogout.type, logout))
-////                SessionFactory.getSession().unbind(channel)
-//                channel.close()
-//            }
-//        }
-//
-//        private val logger: Logger = logger<SessionMemoryImpl>()
-//    }
+    companion object {
+
+
+
+    }
 }
