@@ -13,7 +13,15 @@ data class Maze(
     var walkHistory2: Stack<Int>
 ) {
 
-    constructor(width: Int, height: Int,userId: String,roomId: String) : this(userId, roomId, width, height, Array(width * height) { 0 }, Stack(), Stack())
+    constructor(width: Int, height: Int, userId: String, roomId: String) : this(
+        userId,
+        roomId,
+        width,
+        height,
+        Array(width * height) { 0 },
+        Stack(),
+        Stack()
+    )
 
     // 遍历整图
     fun walk(startPos: Int) {

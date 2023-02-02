@@ -12,7 +12,7 @@ class MoveHandler : SimpleChannelInboundHandler<MoveRequestMessage>() {
 
     override fun channelRead0(ctx: ChannelHandlerContext?, msg: MoveRequestMessage) {
         logger.debug("==========move:$msg")
-        MazeService.move2(msg.userId,msg.direction)
+        MazeService.move(msg.userId,msg.direction)
     }
 
     companion object {

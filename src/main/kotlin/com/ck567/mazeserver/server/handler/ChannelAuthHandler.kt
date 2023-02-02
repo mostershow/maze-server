@@ -1,15 +1,11 @@
 package com.ck567.mazeserver.server.handler
 
-import com.google.gson.Gson
-import com.ck567.mazeserver.server.service.LoginService
 import com.ck567.mazeserver.server.session.SessionFactory
 import com.ck567.mazeserver.util.logger
 import io.netty.channel.ChannelHandler
 import io.netty.channel.ChannelHandlerContext
 import io.netty.channel.SimpleChannelInboundHandler
 import io.netty.handler.codec.http.FullHttpRequest
-import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.stereotype.Component
 
 @ChannelHandler.Sharable
 class ChannelAuthHandler : SimpleChannelInboundHandler<FullHttpRequest>() {
