@@ -1,8 +1,7 @@
 package com.ck567.mazeserver.message
 
-import com.icesimba.simba.exception.badRequestError
 
-enum class OperateType2(
+enum class ProtobufOpreateType(
     val type: Short
 ) {
     // 搞几个枚举放在这里
@@ -23,7 +22,7 @@ enum class OperateType2(
                 OrderNotice.type -> OrderNoticeMessage.serializer()
 
                 else -> {
-                    throw badRequestError(400,"wrong serializer type")
+                    throw Exception("wrong serializer type")
                 }
             }
         }

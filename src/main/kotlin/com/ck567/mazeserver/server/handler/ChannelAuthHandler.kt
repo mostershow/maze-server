@@ -18,12 +18,12 @@ class ChannelAuthHandler : SimpleChannelInboundHandler<FullHttpRequest>() {
         logger.debug("新用户连接，userId:$userId, roomId:$roomId")
         // 绑定appid_userId 对应
         SessionFactory.getSession().bind(ctx!!.channel(), userId)
-        SessionFactory.getSession().setAttribute(ctx!!.channel(), "roomId", roomId)
+        SessionFactory.getSession().setAttribute(ctx.channel(), "roomId", roomId)
         msg.uri = "/"
         // 让消息继续往流水线下游走，如果没有这句则会报错
-        ctx!!.fireChannelRead(msg!!.retain())
+        ctx.fireChannelRead(msg.retain())
         // 在本channel上移除这个handler消息处理，即只处理一次，鉴权通过与否
-        ctx!!.pipeline().remove(ChannelAuthHandler::class.java)
+        ctx.pipeline().remove(ChannelAuthHandler::class.java)
 
 
     }

@@ -1,7 +1,7 @@
 package com.ck567.mazeserver.server.service
 
 import com.ck567.mazeserver.message.Message
-import com.ck567.mazeserver.message.OperateType
+import com.ck567.mazeserver.message.JsonOperateType
 import com.ck567.mazeserver.server.controller.InitReq
 import com.ck567.mazeserver.server.entity.Walker
 import com.ck567.mazeserver.server.entity.Maze
@@ -54,7 +54,7 @@ class MazeService {
                     if (t != it) {
                         println("通知给$it, 发送$t 的房间数据")
                         val chan = SessionFactory.getSession().getChannel(it)
-                        chan?.writeAndFlush(Message(OperateType.MazeRes.type, u))
+                        chan?.writeAndFlush(Message(JsonOperateType.MazeRes.type, u))
                     }
                 }
             }
@@ -71,7 +71,7 @@ class MazeService {
                 if (userId != it) {
                     println("通知用户$it,$userId 位置 $pos")
                     val chan = SessionFactory.getSession().getChannel(it)
-                    chan?.writeAndFlush(Message(OperateType.MoveRes.type, MoveResMessage(userId, pos)))
+                    chan?.writeAndFlush(Message(JsonOperateType.MoveRes.type, MoveResMessage(userId, pos)))
                 }
             }
         }

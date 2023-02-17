@@ -1,7 +1,7 @@
 package com.ck567.mazeserver.server
 
-import com.ck567.mazeserver.protocol.MessageDecoder
-import com.ck567.mazeserver.protocol.MessageEncoder
+import com.ck567.mazeserver.protocol.JsonMessageDecoder
+import com.ck567.mazeserver.protocol.JsonMessageEncoder
 import com.ck567.mazeserver.server.handler.*
 import io.netty.channel.*
 import io.netty.handler.codec.http.HttpObjectAggregator
@@ -19,12 +19,11 @@ import org.springframework.stereotype.Component
 class ChatServerInitializer :  ChannelInitializer<Channel>() {
 
     @Autowired
-    lateinit var messageEncoder: MessageEncoder
+    lateinit var jsonMessageEncoder: JsonMessageEncoder
     @Autowired
-    lateinit var messageDecoder: MessageDecoder
+    lateinit var jsonMessageDecoder: JsonMessageDecoder
 
 
-    val loginReqHandler = LoginRequestHandler()
     val heartBeat = HeartBeatHandler()
     val auth = ChannelAuthHandler()
     val move = MoveHandler()
@@ -40,10 +39,9 @@ class ChatServerInitializer :  ChannelInitializer<Channel>() {
             .addLast(auth)
 
             .addLast(WebSocketServerProtocolHandler("/", null, true))
-            .addLast(messageEncoder)
-            .addLast(messageDecoder)
+            .addLast(jsonMessageEncoder)
+            .addLast(jsonMessageDecoder)
             .addLast(move)
-            .addLast(loginReqHandler)
             .addLast(heartBeat)
 
 

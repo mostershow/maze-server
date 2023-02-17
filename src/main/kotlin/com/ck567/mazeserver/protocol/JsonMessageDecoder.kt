@@ -1,6 +1,6 @@
 package com.ck567.mazeserver.protocol
 
-import com.ck567.mazeserver.message.OperateType
+import com.ck567.mazeserver.message.JsonOperateType
 import com.google.gson.*
 import io.netty.channel.ChannelHandler
 import io.netty.channel.ChannelHandlerContext
@@ -8,12 +8,11 @@ import io.netty.handler.codec.MessageToMessageDecoder
 import io.netty.handler.codec.http.websocketx.WebSocketFrame
 import org.springframework.stereotype.Component
 import java.lang.reflect.Type
-import java.nio.charset.Charset
 import java.nio.charset.StandardCharsets
 
 @Component
 @ChannelHandler.Sharable
-class MessageDecoder : MessageToMessageDecoder<WebSocketFrame>() {
+class JsonMessageDecoder : MessageToMessageDecoder<WebSocketFrame>() {
 
     @Throws(Exception::class)
     override fun decode(ctx: ChannelHandlerContext, msg: WebSocketFrame, out: MutableList<Any>) {
@@ -27,7 +26,7 @@ class MessageDecoder : MessageToMessageDecoder<WebSocketFrame>() {
         buf.readBytes(data)
         // 编解码器的分发
         val res = String(data,StandardCharsets.UTF_8)
-        val clazz = OperateType.getSerializer(type)
+        val clazz = JsonOperateType.getSerializer(type)
         val gson = GsonBuilder().serializeNulls()
             .serializeSpecialFloatingPointValues()
             .disableHtmlEscaping()

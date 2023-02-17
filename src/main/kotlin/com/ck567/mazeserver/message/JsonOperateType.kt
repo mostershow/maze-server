@@ -2,9 +2,8 @@ package com.ck567.mazeserver.message
 
 import com.ck567.mazeserver.server.entity.Walker
 import com.ck567.mazeserver.server.service.MoveResMessage
-import com.icesimba.simba.exception.badRequestError
 
-enum class OperateType(
+enum class JsonOperateType(
     val type: Short
 ) {
     // 搞几个枚举放在这里
@@ -31,7 +30,7 @@ enum class OperateType(
                 MazeRes.type -> Walker::class.java
                 MoveRes.type -> MoveResMessage::class.java
                 else -> {
-                    throw badRequestError(400,"wrong serializer type")
+                    throw Exception("wrong serializer type")
                 }
             }
         }
